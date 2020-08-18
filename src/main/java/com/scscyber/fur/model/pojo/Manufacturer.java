@@ -9,5 +9,4 @@ public class Manufacturer {
     private String address;
     private String country;
     private String city;
-
 }
