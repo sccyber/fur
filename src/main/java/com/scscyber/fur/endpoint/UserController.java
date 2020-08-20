@@ -2,7 +2,11 @@ package com.scscyber.fur.endpoint;
 
 import com.scscyber.fur.common.function.HandleErrors;
 import com.scscyber.fur.model.dto.UserDto;
+import com.scscyber.fur.model.pojo.User;
 import com.scscyber.fur.service.itf.IUserService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +26,8 @@ public class UserController {
     }
 
     @PostMapping("create-by-email")
-    public Object CreateUser(@Valid @RequestBody UserDto userDto, BindingResult result){
+    public ResponseEntity<User> CreateUser(@Valid @RequestBody UserDto userDto, BindingResult result){
         List<String> error = HandleErrors.ErrorBindingResults(result);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
