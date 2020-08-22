@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scscyber.fur.mybatis.mapper.UserMapper">
+    <select id="checkExistsEmail" resultType="int" parameterType="String">
+        SELECT
+            COUNT(1)
+        FROM
+            USERS
+        WHERE 1 = 1
+            AND DELETED_YN = 'N'
+            AND EMAIL = #{email}
+    </select>
+
+    <insert id="createUser" useGeneratedKeys="true"
+            keyColumn="USER_ID" parameterType="UserCreateDto">
+        INSERT INTO USERS (
+            LOGIN_NAME,
+            PASSWORD,
+            EMAIL,
+            ROLE_ID,
+            PHONE,
+            CITIZEN_ID,
+            DELETED_YN,
+            CREATE_USER,
+            CREATE_DATE,
+            UPDATE_USER,
+            UPDATE_DATE,
+            IS_RESET)
+        VALUES (
+            #{email},
+            #{password},
+            #{email},
+            1,
+            "0346368893",
+            "",
+            "N",
+            "R",
+            "2020-08-21",
+            "R",
+            "2020-08-21",
+            1)
+    </insert>
+</mapper>
